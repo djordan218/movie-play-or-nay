@@ -1,0 +1,28 @@
+MOVIE TIME (name pending idk)
+
+1. What goal will your website be designed to achieve?
+- this website will list ratings of movies of two popular review sites (IMDB & Rotten Tomatoes)
+- it will list the runtime and what time the movie will end based on when the search was made
+- a user can create an account and set a "bedtime" and possibly filter criteria to assess if a movie can be seen or not
+- can save movies they've seen to be able to be searched later on 
+
+2. What kind of users will visit your site? In other words, what is the demographic of your users?
+- people like me and my wife! When we search movies we always have to have two tabs open - one for RT and one for IMDB. I like to read the first few user reviews and she likes to see movies that are a specific rating or above
+- an app to be used in realtime when someone is looking up a movie 
+- for a demographic that can set specific criteria that tells them "see it!" or "don't" based off of filters they set 
+
+3. What data do you plan on using? You may have not picked your actual API yet, which is fine, just outline what kind of data you would like it to contain.
+- there are a couple of APIs available, but I will most likely use "themoviedb"
+- movie title. movie rating (IMDB). movie rating (RT). list first three user reviews. runtime. 
+
+4. In brief, outline your approach to creating your project (knowing that you may not know everything in advance and that these details might change later).
+- Database schema will be simple. Have a users db that saves username/passwords, then one table that saves their preferences, and then another database that saves the movies that they like.
+- issues of using an API could be the API being down
+- only need to bcrypt passwords for users. Likely will not require much for password requirements due to the nature of the site.
+- i want a clean UI, users will have to sign in so they can save movies but searching movies will not require an account 
+- when a movie is found, I want the page to display these things:
+    - MOVIE TITLE 
+    - MOVIE RATINGS from both sites (maybe list first three reviews in smaller font below ratings)
+    - END MOVIE TIME
+    - SEE OR SKIP (based on user preferences)
+    - underneath this (if a user is signed in), they can save the movie if they've seen it that will list the day they saw it 
