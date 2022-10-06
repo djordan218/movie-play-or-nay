@@ -53,19 +53,6 @@ class User(db.Model):
 
         return False
 
-# class Movie(db.Model):
-#     """Movies"""
-
-#     __tablename__ = 'movies'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.Text)
-#     runtime = db.Column(db.String)
-#     imdb_rating = db.Column(db.Float)
-#     rt_rating = db.Column(db.Integer)
-#     description = db.Column(db.Text)
-
-
 def connect_db(app):
     """Connect this database to provided Flask app.
 

@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, flash, redirect, session, g
+from flask import Flask, render_template, flash, redirect, session, g
 from sqlalchemy.exc import IntegrityError
 from jinja2.exceptions import UndefinedError
 from forms import UserAddForm, LoginForm, UserEditForm, MovieSearchForm
-from models import db, connect_db, User, Movie
+from models import db, connect_db, User
 from key import API_KEY
-from datetime import datetime, timedelta, time
+from datetime import datetime
 import requests
 
 CURR_USER_KEY = "curr_user"
@@ -146,7 +146,3 @@ def load_movie():
             return render_template("index.html", form=form, time=time, data=data)
     else:
         return render_template("index.html", form=form, time=time, data=data)
-
-# @app.route("movie_decide", methods=["GET", "POST"])
-# def populate_decision():
-
