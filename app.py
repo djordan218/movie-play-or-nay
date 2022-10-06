@@ -21,9 +21,6 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "iamasecretkey123456")
 
 connect_db(app)
 
-if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
-
 @app.before_request
 def add_user_to_g():
     """If we're logged in, add curr user to Flask global."""
