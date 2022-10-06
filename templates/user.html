@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <h1 class="display-4 text-center">Here is your account info:</h1>
+  <p class="lead text-center">
+    If you want to edit any details, please do so below.</a>
+  </p>
+</div>
+
+<form method="POST">
+    {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
+    'hidden' %}
+    <p class="form">
+      {{ field.label }} {{ field(class_="form-control") }} {% for error in
+      field.errors %} <span class="form-text text-danger">{{ error }}</span>
+      {% endfor %}
+    </p>
+    {% endfor %}
+  
+    <button class="btn btn-outline-secondary" type="submit">Edit User</button>
+  </form>
+
+{% endblock %}

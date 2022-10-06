@@ -1,0 +1,40 @@
+.header {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+body {
+  padding-top: 100px;
+}
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+body.dark-mode {
+  background-color: #1e2225;
+  color: white;
+}
+
+::placeholder {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+form {
+  text-align: center;
+}
+
+.icon {
+  height: 200px;
+  width: 200px;
+}
+
+.alert {
+  text-align: center;
+  font-weight: bold;
+}

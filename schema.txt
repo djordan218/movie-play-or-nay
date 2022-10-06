@@ -2,6 +2,8 @@
 API: http://www.omdbapi.com/
 API key: 188d3aee
 
+PLAY OR NAY
+
 Data sent as JSON
 EXAMPLE: {
   "Title": "Inception",
