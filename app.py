@@ -46,7 +46,7 @@ def user_logout():
 def homepage():
     """Show homepage"""
     form=MovieSearchForm()
-    now = datetime.now()
+    now = datetime.utcnow()
     time = now.strftime("%I:%M %p")
     if g.user:
         if g.user.bedtime:
