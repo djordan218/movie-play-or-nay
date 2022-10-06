@@ -9,7 +9,6 @@ import os
 
 CURR_USER_KEY = "curr_user"
 
-
 app = Flask(__name__)
 
 app.config['DATABASE_URL'] = f"postgresql://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}:${{ PGPORT }}/${{ PGDATABASE }}"
