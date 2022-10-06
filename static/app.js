@@ -1,7 +1,10 @@
 $('#decide').click(movieDecision);
 
+const currentTime = moment().format('hh:mm A');
+$('#currentTime').append(`The current time is: ${currentTime}.`);
+
 function movieDecision() {
-  const currentTime = $('#currentTime').data('time');
+  $('#decide').attr('disabled', 'disabled');
   const userBedtime = $('#userBedtime').data('bedtime');
   const userImdb = $('#userImdb').data('imdb');
   const userRt = $('#userRt').data('rt');
@@ -18,13 +21,13 @@ function movieDecision() {
     duration: slicedRuntime,
   };
 
-  const endTime = moment(data.startTime, 'HHmm')
+  const endTime = moment(data.startTime, 'HH:mm A')
     .add(data.duration, 'minutes')
     .format('HH:mm A');
 
   if (splitImdbRating >= userImdb) {
     $('#userImdb').append(
-      `<div class="alert alert-success alert-dismissible fade show" role="alert">This movie got a <b>${splitImdbRating}/10 stars</b> on IMDB. Get the popcorn!
+      `<div class="alert alert-success alert-dismissible fade show" role="alert">This movie got <b>${splitImdbRating}/10 stars</b> on IMDB. Get the popcorn!
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
     );
   } else if (imdbRating == 'NA') {
@@ -34,13 +37,13 @@ function movieDecision() {
     );
   } else {
     $('#userImdb').append(
-      `<div class="alert alert-danger alert-dismissible fade show" role="alert">This movie got a <b>${splitImdbRating}/10 stars</b> on IMDB. I think you're better than this movie.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+      `<div class="alert alert-danger alert-dismissible fade show" role="alert">This movie got <b>${splitImdbRating}/10 stars</b> on IMDB. I think you're better than this movie.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
     );
   }
 
   if (splitRtRating >= userRt) {
     $('#userRt').append(
-      `<div class="alert alert-success alert-dismissible fade show" role="alert">This movie got a <b>${splitRtRating}%</b> on Rotten Tomatoes. Go for it!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+      `<div class="alert alert-success alert-dismissible fade show" role="alert">This movie got <b>${splitRtRating}%</b> on Rotten Tomatoes. Go for it!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
     );
   } else if (rtRating == 'NA') {
     $('#userRt').append(
@@ -48,7 +51,7 @@ function movieDecision() {
     );
   } else {
     $('#userRt').append(
-      `<div class="alert alert-danger alert-dismissible fade show" role="alert">This movie got a <b>${splitRtRating}%</b> on Rotten Tomatoes. Not quite up to snuff for you.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+      `<div class="alert alert-danger alert-dismissible fade show" role="alert">This movie got <b>${splitRtRating}%</b> on Rotten Tomatoes. Not quite up to snuff for you.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
     );
   }
 
@@ -56,9 +59,9 @@ function movieDecision() {
   parsedBedtime = moment(userBedtime, 'HH:mm A');
 
   if (parsedEndtime.isBefore(parsedBedtime)) {
-    const endTime = moment(parsedEndtime, 'HHmm').format('hh:mm A');
+    const endTime = moment(parsedEndtime, 'HH:mm A').format('hh:mm A');
     $('#userBedtime').append(
-      `<div class="alert alert-success alert-dismissible fade show" role="alert">This movie will end at <b>${endTime}</b> for you to get a good night's rest! Get some comfy pants on!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
+      `<div class="alert alert-success alert-dismissible fade show" role="alert">This movie will end at <b>${endTime}</b>! You will have time for a good night's rest! Get your comfy pants on and press play!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`
     );
   } else {
     $('#userBedtime').append(

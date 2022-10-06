@@ -46,16 +46,14 @@ def user_logout():
 def homepage():
     """Show homepage"""
     form=MovieSearchForm()
-    now = datetime.utcnow()
-    time = now.strftime("%I:%M %p")
     if g.user:
         if g.user.bedtime:
             user_bedtime = g.user.bedtime.strftime("%I:%M %p")
-            return render_template("index.html", form=form, time=time, user_bedtime=user_bedtime)
+            return render_template("index.html", form=form, user_bedtime=user_bedtime)
         else:
-            return render_template("index.html", form=form, time=time)
+            return render_template("index.html", form=form)
     else:
-        return render_template("index.html", form=form, time=time)
+        return render_template("index.html", form=form)
 
 @app.route("/signup", methods=['GET', 'POST'])
 def user_signup():
