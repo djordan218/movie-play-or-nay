@@ -1,6 +1,5 @@
 from flask import Flask, render_template, flash, redirect, session, g
 from sqlalchemy.exc import IntegrityError
-from jinja2.exceptions import UndefinedError
 from forms import UserAddForm, LoginForm, UserEditForm, MovieSearchForm
 from models import db, connect_db, User
 from key import API_KEY

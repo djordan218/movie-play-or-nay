@@ -1,8 +1,6 @@
-from email.policy import default
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, FloatField, IntegerField, TimeField, DecimalField, DateTimeField, DateTimeLocalField
+from wtforms import StringField, PasswordField, IntegerField, TimeField, DecimalField
 from wtforms.validators import DataRequired, Length, NumberRange
-from datetime import datetime
 
 
 class UserAddForm(FlaskForm):
