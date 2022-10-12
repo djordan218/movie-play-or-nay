@@ -4,6 +4,10 @@
   font-weight: bold;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   padding-top: 100px;
 }
@@ -37,4 +41,26 @@ form {
 .alert {
   text-align: center;
   font-weight: bold;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.card-body-btn {
+  margin-top: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-movie-title {
+  font-weight: bold;
+}
+
+.main-search {
+  margin-bottom: 10px;
 }

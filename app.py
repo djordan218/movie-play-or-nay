@@ -132,16 +132,14 @@ def load_movie():
     form=MovieSearchForm()
     API_URL = 'http://www.omdbapi.com/?'
     search_term = form.movie.data
-    res = requests.get(API_URL, params={'apikey': API_KEY, 't': search_term})
-    data = res.json()
+    res = requests.get(API_URL, params={'apikey': API_KEY, 's': search_term})
+    movies = res.json()
 
-    now = datetime.now()
-    time = now.strftime("%I:%M %p")
     if g.user:
         if g.user.bedtime:
             user_bedtime = g.user.bedtime.strftime("%I:%M %p")
-            return render_template("index.html", form=form, time=time, user_bedtime=user_bedtime, data=data)
+            return render_template("index.html", form=form, user_bedtime=user_bedtime, movies=movies)
         else:
-            return render_template("index.html", form=form, time=time, data=data)
+            return render_template("index.html", form=form, movies=movies)
     else:
-        return render_template("index.html", form=form, time=time, data=data)
+        return render_template("index.html", form=form, movies=movies)

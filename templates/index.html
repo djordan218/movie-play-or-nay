@@ -24,13 +24,11 @@
     <h6 class="text-center" id="userBedtime" data-bedtime="{{ user_bedtime }}">
       Your current bedtime is set to {{user_bedtime}}.
     </h6>
-    {% endif %}
-    {% if g.user.imdb_rating %}
+    {% endif %} {% if g.user.imdb_rating %}
     <h6 class="text-center" id="userImdb" data-imdb="{{ g.user.imdb_rating }}">
       Your current IMDB standard is set to {{g.user.imdb_rating}} stars.
     </h6>
-    {% endif %}
-    {% if g.user.rt_rating %}
+    {% endif %} {% if g.user.rt_rating %}
     <h6 class="text-center" id="userRt" data-rt="{{ g.user.rt_rating }}">
       Your current Rotten Tomatoes standard is set to {{g.user.rt_rating}}%.
     </h6>
@@ -38,82 +36,61 @@
   </h6>
 </div>
 
-<form action="/movie_search" , method="POST">
+<form action="/movie_search" , method="POST" class="main-search">
   {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
   'hidden' %}
-  <p class="form">
+  <p id="movieSearch" class="form">
     {{ field.label }} {{ field(class_="form-control") }} {% for error in
     field.errors %} <span class="form-text text-danger">{{ error }}</span>
     {% endfor %}
   </p>
+
   {% endfor %}
   <div class="d-grid gap-2 col-6 mx-auto">
-    <button class="btn btn-outline-secondary btn-lg" type="submit">Search!</button>
+    <button
+      id="searchBtn"
+      class="btn btn-outline-secondary btn-lg"
+      type="submit"
+    >
+      Search!
+    </button>
   </div>
 </form>
 
-{% if data %}
- <div class="container">
-  <div class="row">
-    {% if data['Poster'] == 'N/A' %}
-    <div class="col" id="alt-movie-image"><img style="height: 444px; width: 300px;" src="/static/images/no-poster.jpg" /></div>
-    {% else %}
-    <div class="col" id="movie-image"><img src="{{data['Poster']}}" /></div>
-    {% endif %}
-    <div class="col text-center justify-content-center align-self-center" id="movie-info"><h1>{{data['Title']}}</h1><h4 id="runtime" data-runtime="{{data['Runtime']}}">{{data['Runtime']}}</h4></div>
-    <div id="carouselExampleDark" class="carousel carousel-dark slide col text-center justify-content-center align-self-center" style="width: 10vw" data-bs-ride="carousel">
-      <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="10000">
-        <div class="d-flex justify-content-center"><img
-          class="icon d-block w-10"
-          src="/static/images/imdb.png"
-        /></div>
-        {% if data['Ratings'][0]%}
-        <h2 class="text-center" id="imdbRating" data-imdb="{{data['Ratings'][0]['Value']}}">{{data['Ratings'][0]['Value']}}</h2>
-        {% else %}
-        <h2 class="text-center" id="imdbRating" data-imdb="NA">N/A</h2>
-        {% endif %}
+<div id="moviePopulate" class="d-flex justify-content-center"></div>
+
+{% if movies %}
+<div class="container movies">
+  <div class="row row-cls-5 d-flex justify-content-center">
+    {% for movie in movies['Search'] %} {% if movie['Type'] == 'movie' %}
+
+    <div class="card text-bg-secondary mb-3" style="width: 18rem; height: auto">
+      {% if movie['Poster'] == "N/A" %}
+      <img
+        src="/static/images/no-poster.jpg"
+        class="card-img-top img-thumbnail"
+      />
+      {% else %}
+      <img src="{{ movie['Poster'] }}" class="card-img-top img-fluid" />
+      {% endif %}
+      <div class="card-body text-center">
+        <h6 class="card-title text-center">
+          <span class="card-movie-title">{{ movie['Title']}}</span>
+          <p>{{movie['Year']}}</p>
+        </h6>
       </div>
-      <div class="carousel-item" data-bs-interval="2000">
-        <div class="d-flex justify-content-center"><img
-          class="icon d-block w-10"
-          src="/static/images/rt.png"
-        /></div>
-        {% if data['Ratings'][1] %}
-        <h2 class="text-center" id="rtRating" data-rt="{{data['Ratings'][1]['Value']}}">{{data['Ratings'][1]['Value']}}</h2>
-        {% else %}
-        <h2 class="text-center" id="rtRating" data-rt="NA">N/A</h2>
-        {% endif %}
-      </div>
-      <div class="carousel-item">
-        <div class="d-flex justify-content-center"><img
-          class="icon d-block w-10"
-          src="/static/images/metacritic.png"
-        /></div>
-        {% if data['Ratings'][2] %}
-        <h2 class="text-center">{{data['Ratings'][2]['Value']}}</h2>
-          {% else %}
-        <h2 class="text-center">N/A</h2>
-        {% endif %}
+      <div class="card-body card-body-btn">
+        <button
+          type="button"
+          id="{{movie['imdbID'] }}"
+          onclick="get_movie(this.id)"
+          class="btn btn-success text-center movieBtn"
+        >
+          This is the one!
+        </button>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-      </div>
-    </div>
+    {% endif %} {% endfor %}
   </div>
 </div>
-{% if g.user %}
-<div class="container">
-    <div class="d-grid gap-2 col-6 mx-auto">
-      <button id="decide" class="btn btn-outline-secondary btn-lg" type="submit">Want us to decide for you?</button>
-    </div>
-</div>
-{% endif %}
 {% endif %} {% endblock %}
