@@ -10,7 +10,7 @@ const userRt = $('#userRt').data('rt');
 async function get_movie(clicked_id) {
   $(`#${clicked_id}`).attr('disabled', 'disabled');
   const res = await axios.get(
-    `http://www.omdbapi.com/?apikey=188d3aee&i=${clicked_id}`
+    `https://www.omdbapi.com/?apikey=188d3aee&i=${clicked_id}`
   );
   let movie = res.data;
   let movieTitle = movie.Title;
@@ -54,7 +54,7 @@ async function get_movie(clicked_id) {
 
 async function decide(clicked_id) {
   const res = await axios.get(
-    `http://www.omdbapi.com/?apikey=188d3aee&i=${clicked_id}`
+    `https://www.omdbapi.com/?apikey=188d3aee&i=${clicked_id}`
   );
   let movie = res.data;
   let movieRuntime = movie.Runtime;
