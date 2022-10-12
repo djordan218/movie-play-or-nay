@@ -126,7 +126,7 @@ async function decide(clicked_id) {
     );
   }
 
-  // window.scrollTo(0, 0);
+  window.scrollTo(0, 250);
   $('.alert')
     .fadeTo(15000, 500)
     .slideUp(500, function () {
