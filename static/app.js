@@ -52,6 +52,7 @@ async function get_movie(clicked_id) {
   window.scrollTo(0, 150);
 }
 
+// logic to decide based on a user's preferences
 async function decide(clicked_id) {
   const res = await axios.get(
     `https://www.omdbapi.com/?apikey=188d3aee&i=${clicked_id}`
@@ -126,7 +127,7 @@ async function decide(clicked_id) {
     );
   }
 
-  window.scrollTo(0, 250);
+  window.scrollTo(0, 200);
   $('.alert')
     .fadeTo(15000, 500)
     .slideUp(500, function () {
